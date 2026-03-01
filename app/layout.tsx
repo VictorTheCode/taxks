@@ -22,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={grotesk.className}>{children}</body>
+      <body className={grotesk.className} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
