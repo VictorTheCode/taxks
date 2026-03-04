@@ -6,11 +6,6 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
-// initial={{ opacity: 0, y: 20 }}
-//         whileInView={{ opacity: 1, y: 0 }}
-//         viewport={{ once: false, margin: "-100px" }}
-//         transition={{ duration: 0.8 }}
-
 const features = [
   {
     title: "AI Prioritization",
@@ -34,8 +29,6 @@ const steps = [
   { number: "02", text: "AI analyzes and organizes" },
   { number: "03", text: "Work your smart schedule" },
 ];
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 const HomePage = () => {
   return (
@@ -140,7 +133,7 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6 }}
-                className="bg-[#0a0a0a] p-8 hover:bg-white/[0.02] transition-colors duration-300"
+                className="bg-[#0a0a0a] p-8 hover:bg-white/2 transition-colors duration-300"
               >
                 <div className="text-xs text-white/20 mb-6 font-mono">
                   {String(i + 1).padStart(2, "0")}
