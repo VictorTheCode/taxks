@@ -34,7 +34,7 @@ export type Task = {
 // INPUT TYPES
 // ==================================
 
-export type CreateProjectInput = {
+export type CreateTaskInput = {
   title: string;
   description?: string;
   status?: TaskStatus;
@@ -43,7 +43,7 @@ export type CreateProjectInput = {
   projectId: string;
 };
 
-export type UpdateProjectInput = Partial<CreateProjectInput>;
+export type UpdateTaskInput = Partial<CreateTaskInput>;
 
 // all types with relations from prisma
 export type TaskWithProject = Task & {
