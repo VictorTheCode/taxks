@@ -45,7 +45,7 @@ const HomePage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 text-md text-white/50 border border-white/10 rounded-full px-3 py-1.5 mb-10 tracking-widest uppercase"
+            className="inline-flex items-center gap-2 text-lg text-white/50 border border-white/10 rounded-full px-3 py-1.5 mb-10"
           >
             <Sparkles className="w-3 h-3" />
             AI-Powered Task Manager
@@ -61,7 +61,7 @@ const HomePage = () => {
           >
             Focus on <span className="text-[#a8cc1f]">work</span>
             <br />
-            <span className="text-white/30">not on managing it.</span>
+            <span className="text-white/50">not on managing it.</span>
           </motion.h1>
 
           <motion.p
