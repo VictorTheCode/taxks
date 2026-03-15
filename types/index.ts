@@ -10,3 +10,11 @@ export type {
   TaskWithProject,
 } from "./tasks";
 export type { DemoTask, Priority, Status, TaskItemProps } from "./demo";
+export type {
+  SessionUser,
+  User,
+  PublicUser,
+  RegisterInput,
+  LoginInput,
+  JWTPayload,
+} from "./auth";
