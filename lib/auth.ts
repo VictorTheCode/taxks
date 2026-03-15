@@ -14,7 +14,7 @@ export default async function getSession() {
     const { payload } = await jwtVerify(token, secret);
     return payload as SessionUser;
   } catch (error) {
-    console.error("Session verification failed");
+    console.error("Error verifying token:", error);
     return null;
   }
 }
