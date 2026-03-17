@@ -59,3 +59,27 @@ export const STATUS_LABEL: Record<Status, string> = {
   IN_PROGRESS: "In Progress",
   DONE: "Done",
 };
+
+export const features = [
+  {
+    title: "AI Prioritization",
+    description:
+      "Analyzes your tasks and deadlines to surface what actually needs your attention first.",
+  },
+  {
+    title: "Smart Scheduling",
+    description:
+      "Finds the best time slots for deep work based on your habits and energy patterns.",
+  },
+  {
+    title: "Productivity Insights",
+    description:
+      "Tracks your patterns over time and surfaces what's slowing you down.",
+  },
+];
+
+export const steps = [
+  { number: "01", text: "Add your tasks naturally" },
+  { number: "02", text: "AI analyzes and organizes" },
+  { number: "03", text: "Work your smart schedule" },
+];

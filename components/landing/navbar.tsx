@@ -12,13 +12,13 @@ const Navbar = () => {
       <span className="text-lg font-semibold tracking-tight">Taxks</span>
       <div className="flex items-center gap-6">
         <Link
-          href="/login"
+          href="/sign-in"
           className="text-sm text-white/50 hover:text-white transition-colors duration-200"
         >
           Sign in
         </Link>
         <Link
-          href="/signup"
+          href="/sign-up"
           className="text-sm bg-white text-black px-4 py-2 rounded-md font-medium hover:bg-white/90 transition-colors duration-200"
         >
           Get started

@@ -2,33 +2,10 @@
 
 import Navbar from "@/components/landing/navbar";
 import Testimonials from "@/components/landing/testimonials";
+import { features, steps } from "@/constants";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
-
-const features = [
-  {
-    title: "AI Prioritization",
-    description:
-      "Analyzes your tasks and deadlines to surface what actually needs your attention first.",
-  },
-  {
-    title: "Smart Scheduling",
-    description:
-      "Finds the best time slots for deep work based on your habits and energy patterns.",
-  },
-  {
-    title: "Productivity Insights",
-    description:
-      "Tracks your patterns over time and surfaces what's slowing you down.",
-  },
-];
-
-const steps = [
-  { number: "01", text: "Add your tasks naturally" },
-  { number: "02", text: "AI analyzes and organizes" },
-  { number: "03", text: "Work your smart schedule" },
-];
 
 const HomePage = () => {
   return (
@@ -85,7 +62,7 @@ const HomePage = () => {
             className="flex justify-center gap-3"
           >
             <Link
-              href="/signup"
+              href="/sign-up"
               className="bg-white text-black px-6 py-2.5 rounded-md text-sm font-semibold hover:bg-white/90 transition-colors duration-200"
             >
               Start for free
@@ -201,7 +178,7 @@ const HomePage = () => {
             </p>
           </div>
           <Link
-            href="/signup"
+            href="/sign-up"
             className="shrink-0 bg-white text-black px-6 py-2.5 rounded-md text-sm font-semibold hover:bg-white/90 transition-colors duration-200"
           >
             Create your account
