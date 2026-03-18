@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./cabinet-grotesk.css";
 
 :root {
   --background: #ffffff;
@@ -21,14 +22,29 @@
   --mono: "DM Mono", monospace;
   --sans: "Geist", sans-serif;
   --radius: 10px;
+  --font-grotesk-bold: "CabinetGrotesk-Bold", sans-serif;
+  --font-grotesk-black: "CabinetGrotesk-Black", var(--mono);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  /* Map your custom colors directly */
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --color-accent2: var(--accent2);
+  --color-red: var(--red);
+  --color-orange: var(--orange);
+  --color-blue: var(--blue);
+
+  /* Map your custom fonts */
+  --font-sans:
+    var(--font-cabinet), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: var(--font-geist-mono);
-  --text-accent: var(--accent);
+  --font-grotesk-bold: var(--font-grotesk-bold);
+  --font-grotesk-black: var(--font-grotesk-black);
 }
 
 html {
