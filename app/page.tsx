@@ -1,202 +1,163 @@
 "use client";
 
+import { useRef } from "react";
 import Navbar from "@/components/landing/navbar";
 import Testimonials from "@/components/landing/testimonials";
 import { features, steps } from "@/constants";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import Footer from "@/components/landing/footer";
+import BentoGrid from "@/components/landing/bento";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HomePage = () => {
+  const containerRef = useRef(null);
+  const revealRef = useRef(null);
+
+  useGSAP(
+    () => {
+      // The Dashboard Reveal Animation
+      gsap.fromTo(
+        revealRef.current,
+        { scale: 0.9, y: 100, opacity: 0, rotateX: 15 },
+        {
+          scale: 1,
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: revealRef.current,
+            start: "top bottom",
+            end: "top 20%",
+            scrub: 1,
+          },
+        },
+      );
+    },
+    { scope: containerRef },
+  );
+
   return (
-    <main className="min-h-screen text-white font-sans selection:bg-white selection:text-black">
-      {/* ── Navbar ── */}
+    <main
+      ref={containerRef}
+      className="min-h-screen text-white font-sans selection:bg-[#c8f060] selection:text-black bg-[#0d0e15] relative"
+    >
+      <div className="fixed inset-0 bg-[url('/noise.svg')] opacity-[0.03] pointer-events-none z-50" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[500px] bg-[#c8f060]/5 blur-[120px] rounded-full pointer-events-none" />
+
       <Navbar />
 
-      {/* ── Hero ── */}
-      <section className="pt-40 pb-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="pt-40 pb-20 px-6 relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
-            custom={0.1}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 text-lg text-white/50 border border-white/10 rounded-full px-3 py-1.5 mb-10"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#c8f060] border border-[#c8f060]/20 bg-[#c8f060]/5 rounded-full px-4 py-2 mb-8"
           >
             <Sparkles className="w-3 h-3" />
-            AI-Powered Task Manager
+            System Status: Optimized
           </motion.div>
 
           <motion.h1
-            custom={0.2}
+            className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            Focus on <span className="text-[#a8cc1f]">work</span>
+            Focus on <span className="text-[#c8f060] italic">work</span>
             <br />
-            <span className="text-white/50">not on managing it.</span>
+            <span className="text-white/30 italic">not managing it.</span>
           </motion.h1>
 
-          <motion.p
-            custom={0.35}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-base text-white/40 max-w-lg mx-auto mb-10 leading-relaxed"
-          >
-            Taxks uses AI to organize, prioritize, and schedule your tasks so
-            you can spend less time planning and more time doing.
+          <motion.p className="text-lg text-white/50 max-w-xl mx-auto mb-12 leading-relaxed">
+            Taxks uses high-fidelity neural scheduling to automate your
+            workflow. Engineered for those who value deep work over manual
+            planning.
           </motion.p>
 
-          <motion.div
-            custom={0.45}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center gap-3"
-          >
+          <div className="flex justify-center gap-4 mb-24">
             <Link
               href="/sign-up"
-              className="bg-white text-black px-6 py-2.5 rounded-md text-sm font-semibold hover:bg-white/90 transition-colors duration-200"
+              className="bg-[#c8f060] text-black px-8 py-4 rounded-full text-sm font-bold hover:scale-105 transition-transform"
             >
-              Start for free
+              Deploy Workspace
             </Link>
             <Link
               href="/demo"
-              className="border border-white/10 text-white/60 px-6 py-2.5 rounded-md text-sm font-medium hover:border-white/20 hover:text-white/80 transition-colors duration-200"
+              className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-white/10 transition-colors"
             >
-              See demo
+              View Architecture
             </Link>
-          </motion.div>
+          </div>
+
+          <div ref={revealRef} className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-b from-[#c8f060]/20 to-transparent rounded-[2rem] blur-2xl opacity-50" />
+            <div className="relative aspect-video w-full rounded-[1.5rem] border border-white/10 bg-[#0c0c0c] overflow-hidden shadow-2xl">
+              <div className="absolute inset-0 flex items-center justify-center border-t border-white/5 bg-gradient-to-b from-white/5 to-transparent">
+                <span className="font-mono text-white/10 text-xl tracking-[1em] uppercase">
+                  Preview_Interface
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── Divider ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="max-w-5xl mx-auto px-6"
-      >
-        <div className="h-px bg-white/5" />
-      </motion.div>
+      <section className="py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-md">
+              <h2 className="text-4xl font-bold tracking-tight mb-4">
+                Core Infrastructure
+              </h2>
+              <p className="text-white/40">
+                The engine behind your productivity. Scalable, fast, and
+                remarkably intelligent.
+              </p>
+            </div>
+            <div className="text-xs font-mono text-[#c8f060] bg-[#c8f060]/5 border border-[#c8f060]/10 px-3 py-1 rounded">
+              v1.0.4-stable
+            </div>
+          </div>
 
-      {/* ── Features ── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="text-sm text-white/50 tracking-widest uppercase mb-12"
-          >
-            Features
-          </motion.p>
+          <BentoGrid />
 
-          <div className="grid md:grid-cols-3 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/5">
+          {/* <div className="grid md:grid-cols-12 gap-4">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
-                custom={i * 0.1}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6 }}
-                className="bg-[#0a0a0a] p-8 hover:bg-white/2 transition-colors duration-300"
+                viewport={{ once: true }}
+                className={`${
+                  i === 0
+                    ? "md:col-span-7"
+                    : i === 1
+                      ? "md:col-span-5"
+                      : "md:col-span-12"
+                } bg-white/2 border border-white/5 p-10 rounded-3xl hover:border-[#c8f060]/30 transition-colors group`}
               >
-                <div className="text-xs text-white/20 mb-6 font-mono">
-                  {String(i + 1).padStart(2, "0")}
+                <div className="text-[#c8f060] mb-6 opacity-50 group-hover:opacity-100 transition-opacity">
+                  {String(i + 1).padStart(2, "0")} /
                 </div>
-                <h3 className="text-base font-semibold mb-3">{f.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-4">{f.title}</h3>
+                <p className="text-white/40 leading-relaxed text-lg max-w-sm">
                   {f.description}
                 </p>
               </motion.div>
             ))}
-          </div>
+          </div> */}
         </div>
-      </section>
-
-      {/* ── How It Works ── */}
-      <section className="py-24 px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="text-xs text-white/30 tracking-widest uppercase mb-12"
-          >
-            How it works
-          </motion.p>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                custom={i * 0.12}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col gap-4"
-              >
-                <span className="text-4xl font-bold text-white/10 font-mono">
-                  {step.number}
-                </span>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  {step.text}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA Banner ── */}
-      <section className="py-24 px-6 border-t border-white/5">
-        <motion.div
-          custom={0}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8"
-        >
-          <div>
-            <h2 className="text-2xl font-bold mb-2">Ready to get focused?</h2>
-            <p className="text-sm text-white/40">
-              Free to start. No credit card required.
-            </p>
-          </div>
-          <Link
-            href="/sign-up"
-            className="shrink-0 bg-white text-black px-6 py-2.5 rounded-md text-sm font-semibold hover:bg-white/90 transition-colors duration-200"
-          >
-            Create your account
-          </Link>
-        </motion.div>
       </section>
 
       <Testimonials />
-
-      {/* ── Footer ── */}
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <span className="text-sm font-semibold">Taxks</span>
-          <p className="text-xs text-white/20">
-            © 2026 Taxks. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 };

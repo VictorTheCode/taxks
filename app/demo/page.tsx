@@ -3,13 +3,26 @@ import DemoSidebar from "@/components/demo/sidebar";
 import TaskItem from "@/components/demo/task-item";
 import { useTaskLogic } from "@/hooks/use-task-logic";
 import { INITIAL_TASKS } from "@/constants";
-import { Archive, CalendarClock, Sparkles } from "lucide-react";
+import Link from "next/link";
+import {
+  Archive,
+  ArrowLeft,
+  ArrowRightLeft,
+  CalendarClock,
+  Sparkles,
+} from "lucide-react";
 
 export default function DemoPage() {
   const { tasks, setActiveTab, setTasks, activeTab, toggleDone } =
     useTaskLogic(INITIAL_TASKS);
   return (
-    <section className="w-full py-24 px-4 bg-[#0a0a0a]">
+    <section className="relative w-full py-24 px-4 bg-[#0a0a0a]">
+      <Link
+        href="/"
+        className="bg-white/5 backdrop-blur-md border border-white/15 rounded-full px-3 py-3 absolute top-5 left-5 transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:scale-105 cursor-pointer"
+      >
+        <ArrowLeft className="w-6 h-6 text-white" />
+      </Link>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

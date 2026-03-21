@@ -2,43 +2,17 @@
 @import "./cabinet-grotesk.css";
 
 :root {
-  --background: #ffffff;
+  --background: #0d0e15;
   --foreground: #171717;
   --bg: #0c0c0c;
-  --surface: #141414;
-  --surface2: #1a1a1a;
-  --surface3: #202020;
-  --border: rgba(255, 255, 255, 0.06);
-  --border2: rgba(255, 255, 255, 0.1);
-  --text: #efefef;
-  --muted: rgba(255, 255, 255, 0.38);
-  --muted2: rgba(255, 255, 255, 0.2);
   --accent: #c8f060;
   --accent-dim: rgba(200, 240, 96, 0.1);
   --accent2: #ff6b35;
-  --red: #f06060;
-  --orange: #f0a060;
-  --blue: #60a8f0;
-  --mono: "DM Mono", monospace;
-  --sans: "Geist", sans-serif;
-  --radius: 10px;
   --font-grotesk-bold: "CabinetGrotesk-Bold", sans-serif;
   --font-grotesk-black: "CabinetGrotesk-Black", var(--mono);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  /* Map your custom colors directly */
-  --color-accent: var(--accent);
-  --color-accent-dim: var(--accent-dim);
-  --color-accent2: var(--accent2);
-  --color-red: var(--red);
-  --color-orange: var(--orange);
-  --color-blue: var(--blue);
-
-  /* Map your custom fonts */
   --font-sans:
     var(--font-cabinet), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -52,5 +26,76 @@ html {
 }
 
 body {
-  background-color: black;
+  background-color: var(--background);
+}
+
+/* Custom Glow effect for GSAP reveal */
+.perspective-container {
+  perspective: 2000px;
+}
+
+/* Subtle texture overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Custom Text masking for that "Work" word */
+.text-gradient {
+  background: linear-gradient(to bottom right, #c8f060, #a8cc1f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbar for clean look but keep functionality */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0e15;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8f060;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 45s linear infinite;
+}
+
+.pause-on-interaction:hover {
+  animation-play-state: paused;
 }
