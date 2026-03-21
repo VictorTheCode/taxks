@@ -31,7 +31,7 @@ const SignUp = () => {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.message || "Registration failed");
+        throw new Error(data.error || "Registration failed");
       }
 
       // Success - redirect to sign-in
@@ -119,17 +119,17 @@ const SignUp = () => {
           </div>
 
           {/* Submit Button */}
-          {loading ? (
-            <div className="w-full bg-[#d5ff45] opacity-20 text-black font-semibold rounded-xl py-3.5 mt-2 flex items-center justify-center">
-              Creating account...
+          <button
+            type="submit"
+            disabled={loading}
+            className={`${loading ? "opacity-50 cursor-not-allowed" : ""} w-full text-md bg-[#d5ff45] hover:bg-[#c6f036] text-black font-semibold rounded-xl py-3 transition-colors duration-200`}
+          >
+            {loading ? "Creating account..." : "Create account"}
+          </button>
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-xl p-3">
+              {error}
             </div>
-          ) : (
-            <button
-              type="submit"
-              className="w-full bg-[#d5ff45] hover:bg-[#c6f036] text-black font-semibold rounded-xl py-3.5 mt-2 transition-colors duration-200"
-            >
-              Create account
-            </button>
           )}
 
           {/* Error Message */}
