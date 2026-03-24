@@ -1,8 +1,14 @@
-import { Bot, CheckSquare, LayoutDashboard, Workflow } from "lucide-react";
+import {
+  Bot,
+  CheckSquare,
+  LayoutDashboard,
+  User2Icon,
+  Workflow,
+} from "lucide-react";
 
 const DemoSidebar = () => {
   return (
-    <div className="w-44 border-r border-white/5 bg-[#111] flex flex-col py-4 shrink-0">
+    <aside className="w-44 h-full border-r border-white/5 bg-[#111] flex flex-col py-4 shrink-0">
       <div className="px-4 mb-5 text-sm font-bold text-gray-300 tracking-tight">
         Taxks<span className="text-[#c8f060] ml-[0.9]">.</span>
       </div>
@@ -25,19 +31,19 @@ const DemoSidebar = () => {
         </div>
       ))}
       <div className="mt-auto px-4 pt-4 border-t border-white/5">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-[#c8f060]/10 border border-[#c8f060]/30 flex items-center justify-center text-[10px] font-bold text-[#c8f060]">
-            V
+        <div className="flex items-center space-x-5">
+          <div className="w-6 h-6  rounded-full bg-[#c8f060]/10 border border-[#c8f060]/30 flex items-center justify-center text-[10px] font-bold text-[#c8f060]">
+            <User2Icon className="w-3 h-3 text-center" />
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center space-x-2 justify-center">
             <div className="text-xs font-semibold leading-none mb-0.5">
-              Victor
+              User
             </div>
             <div className="text-[10px] text-white/30 font-mono">Free</div>
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

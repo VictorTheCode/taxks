@@ -68,7 +68,7 @@ const BentoGrid = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
           <span className="text-[10px] font-mono text-[#c8f060] uppercase tracking-[0.3em] block mb-4">
-            Engine // Capabilities
+            Capabilities
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter">
             Architected for{" "}
