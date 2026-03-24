@@ -1,90 +1,106 @@
 "use client";
-import DemoSidebar from "@/components/demo/sidebar";
+
 import TaskItem from "@/components/demo/task-item";
 import { useTaskLogic } from "@/hooks/use-task-logic";
 import { INITIAL_TASKS } from "@/constants";
 import Link from "next/link";
-import {
-  Archive,
-  ArrowLeft,
-  ArrowRightLeft,
-  CalendarClock,
-  Sparkles,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Sparkles, Terminal, Activity, Command } from "lucide-react";
 
 export default function DemoPage() {
-  const { tasks, setActiveTab, setTasks, activeTab, toggleDone } =
+  const { tasks, setActiveTab, activeTab, toggleDone } =
     useTaskLogic(INITIAL_TASKS);
+
   return (
-    <section className="relative w-full py-24 px-4 bg-[#0a0a0a]">
+    <section className="relative min-h-screen w-full py-20 px-6 bg-[#0d0e15] overflow-hidden">
+      {/* Background Depth */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-[#c8f060]/5 blur-[120px] rounded-full pointer-events-none" />
+
       <Link
         href="/"
-        className="bg-white/5 backdrop-blur-md border border-white/15 rounded-full px-3 py-3 absolute top-5 left-5 transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:scale-105 cursor-pointer"
+        className="fixed top-8 left-8 z-50 flex items-center gap-2 group transition-all"
       >
-        <ArrowLeft className="w-6 h-6 text-white" />
+        <div className="p-2 rounded-full border border-white/10 bg-white/5 group-hover:border-[#c8f060]/40 group-hover:text-[#c8f060]">
+          <ArrowLeft className="w-4 h-4 text-lime-400" />
+        </div>
+        <span className="text-[10px] text-amber-400 font-mono uppercase tracking-wide opacity-50 group-hover:opacity-100 transition-opacity">
+          Go Back
+        </span>
       </Link>
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="text-xs border inline-flex px-4 py-2 items-center   border-white/20 rounded-full font-mono text-white/80 tracking-widest uppercase mb-4">
-            Live Preview
+
+      <div className="max-w-5xl mx-auto relative">
+        {/* Header Section */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px w-8 bg-[#c8f060]/30" />
+            <span className="text-[10px] font-mono text-[#c8f060] uppercase tracking-[0.4em]">
+              Workspace
+            </span>
           </div>
-          <h2 className="text-gray-300 text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            See <span className="text-[#c8f060]">Taxks</span> in action
-          </h2>
-          <p className="text-sm text-white/40 max-w-md mx-auto leading-relaxed">
-            This is a live preview of the actual interface. Interact with it —
-            check off tasks, sort by AI priority, and explore the layout.
+          <h1 className="text-4xl font-black text-white tracking-tighter mb-4">
+            Test the{" "}
+            <span className="italic text-white/30 text-gradient">logic.</span>
+          </h1>
+          <p className="text-sm text-white/40 max-w-sm font-mono uppercase tracking-tight">
+            Check off tasks to see the AI intelligence in real-time.
           </p>
         </div>
 
-        <div className="rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/60">
-          {/* Window chrome */}
-          <div className="bg-[#111] border-b border-white/5 px-4 py-3 flex items-center gap-3">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-white/10" />
-              <div className="w-3 h-3 rounded-full bg-white/10" />
-              <div className="w-3 h-3 rounded-full bg-white/10" />
-            </div>
-            <div className="flex-1 flex justify-center">
-              <div className="bg-white/5 border border-white/8 rounded-md px-4 py-1 text-xs text-white/25 font-mono">
-                taxks/dashboard
-              </div>
-            </div>
-          </div>
+        {/* The "Stripped Down" Dashboard Preview */}
+        <div className="relative group">
+          {/* Outer Frame */}
+          <div className="absolute -inset-[1px] bg-gradient-to-b from-white/10 to-transparent rounded-2xl pointer-events-none" />
 
-          {/* App body */}
-          <div className="bg-[#0e0e0e] flex" style={{ height: 420 }}>
-            {/* Mini sidebar */}
-            <DemoSidebar />
-
-            {/* Main panel */}
-            <div className="flex-1 flex flex-col min-w-0">
-              {/* Topbar */}
-              <div className="h-12 border-b border-white/5 px-4 flex items-center justify-between flex-shrink-0">
-                <span className="text-sm font-bold">Tasks</span>
+          <div className="rounded-2xl border border-white/5 bg-[#0a0a0b] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.8)] flex flex-col md:flex-row min-h-[520px]">
+            {/* Sidebar (Mimicking your screenshot) */}
+            <div className="w-full md:w-60 border-r border-white/5 bg-black/40 p-6 flex flex-col gap-8">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-4 h-4 rounded bg-[#c8f060]" />
+                <span className="text-xs font-black uppercase tracking-tighter">
+                  Taxks.
+                </span>
               </div>
 
-              {/* Tabs */}
-              <div className="flex border-b border-white/5 flex-shrink-0">
-                {(["all", "active", "done"] as const).map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-4 h-10 text-xs capitalize transition-colors cursor-pointer
-                      ${
-                        activeTab === tab
-                          ? "text-white border-b-2 border-[#c8f060]"
-                          : "text-white/35 hover:text-white/60"
-                      }`}
+              <div className="space-y-1">
+                {["Dashboard", "All Tasks", "Projects"].map((item) => (
+                  <div
+                    key={item}
+                    className={`px-3 py-2 rounded-md text-[11px] font-mono uppercase tracking-wider transition-colors cursor-pointer ${item === "Dashboard" ? "bg-[#c8f060]/10 text-[#c8f060]" : "text-white/30 hover:text-white/60"}`}
                   >
-                    {tab}
-                  </button>
+                    {item}
+                  </div>
                 ))}
               </div>
 
-              {/* Task list */}
-              <div className="flex-1 overflow-y-auto">
+              <div className="mt-auto">
+                <div className="p-3 rounded-lg border border-white/5 bg-white/2">
+                  <div className="text-[9px] font-mono text-white/20 uppercase mb-2">
+                    Plan
+                  </div>
+                  <div className="text-[11px] font-bold">
+                    Free Tier // Active
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Task Area */}
+            <div className="flex-1 flex flex-col">
+              {/* Internal Header */}
+              <div className="p-6 border-b border-white/5 flex items-center justify-between">
+                <div>
+                  <h2 className="text-sm font-bold">Today&apos;s Protocol</h2>
+                  <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest mt-1">
+                    Mar 24, 2026
+                  </p>
+                </div>
+                <button className="bg-[#c8f060] text-black text-[10px] font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform uppercase tracking-tighter">
+                  + New Task
+                </button>
+              </div>
+
+              {/* Task List (Stripped Down) */}
+              <div className="p-6 space-y-4">
                 {tasks.map((task) => (
                   <TaskItem
                     key={task.id}
@@ -94,38 +110,58 @@ export default function DemoPage() {
                 ))}
               </div>
             </div>
+
+            {/* AI Insights Panel (The "Secret Sauce" from your screenshot) */}
+            <div className="w-full md:w-72 bg-white/[0.01] border-l border-white/5 p-6 space-y-6">
+              <div>
+                <div className="flex items-center gap-2 mb-4 text-[#c8f060]">
+                  <Sparkles className="w-3 h-3" />
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em]">
+                    AI Insights
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  <div className="p-4 rounded-xl bg-[#c8f060]/5 border border-[#c8f060]/10">
+                    <p className="text-[11px] text-[#c8f060]/90 leading-relaxed font-medium">
+                      Exercise task is overdue.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                    <p className="text-[11px] text-white/40 leading-relaxed">
+                      Deep work window detected: 9:00 AM — 11:00 AM.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Feature callouts below demo */}
-        <div className="grid grid-cols-3 gap-6 mt-10">
+        {/* Technical Callouts */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/5 pt-12">
           {[
             {
-              icon: <CalendarClock />,
-              title: "Task management",
-              desc: "Create, organize, and complete tasks across projects",
+              label: "Task Management",
+              value: "Create, organize, and complete tasks across projects",
+              icon: <Activity className="w-3 h-3" />,
             },
             {
-              icon: <Archive />,
-              title: "Project grouping",
-              desc: "Keep work separated by project with color coding",
+              label: "Project",
+              value: "Keep work separated by project with color coding",
+              icon: <Terminal className="w-3 h-3" />,
             },
             {
-              icon: <Sparkles />,
-              title: "AI prioritization",
-              desc: "One click to sort your entire task list by urgency",
+              label: "AI Integration",
+              value: "One click to sort your entire task list by urgency",
+              icon: <Command className="w-3 h-3" />,
             },
-          ].map((f) => (
-            <div key={f.title} className="text-center">
-              <div className="text-lg text-white/80 mb-3 flex items-center justify-center">
-                {f.icon}
+          ].map((stat) => (
+            <div key={stat.label} className="flex flex-col gap-1">
+              <div className="flex items-center gap-2 text-white/20 uppercase font-mono text-[10px] tracking-[0.2em]">
+                {stat.icon}
+                {stat.label}
               </div>
-              <div className="text-lg text-[#c8f060] font-semibold mb-1">
-                {f.title}
-              </div>
-              <div className="text-sm text-white/60 leading-relaxed">
-                {f.desc}
-              </div>
+              <div className="text-sm font-black text-white">{stat.value}</div>
             </div>
           ))}
         </div>

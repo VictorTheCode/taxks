@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { PageReveal } from "@/components/animations";
 
 const grotesk = localFont({
   src: "../public/fonts/CabinetGrotesk-Regular.woff2",
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={grotesk.className} suppressHydrationWarning>
-        {children}
+        <PageReveal>{children}</PageReveal>
       </body>
     </html>
   );

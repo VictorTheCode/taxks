@@ -10,24 +10,6 @@ const features = [
       "Our core engine analyzes your task velocity and deadlines to auto-rank your day. No more manual sorting.",
     className: "md:col-span-7 md:row-span-2",
     icon: <Brain className="w-5 h-5 text-[#c8f060]" />,
-    visual: (
-      <div className="absolute inset-0 top-32 left-10 bg-[#0d0e15] border-t border-l border-white/10 rounded-tl-2xl p-4 shadow-2xl">
-        <div className="flex gap-2 mb-4">
-          <div className="h-2 w-12 bg-[#c8f060]/20 rounded-full" />
-          <div className="h-2 w-8 bg-white/5 rounded-full" />
-        </div>
-        <div className="space-y-3">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div
-                className={`w-2 h-2 rounded-full ${i === 1 ? "bg-[#c8f060] animate-pulse" : "bg-white/10"}`}
-              />
-              <div className="h-3 w-full bg-white/5 rounded-sm" />
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
   },
   {
     title: "Atomic Security",
@@ -97,9 +79,6 @@ const BentoGrid = () => {
                   {feature.description}
                 </p>
               </div>
-
-              {/* Only the Hero feature gets the visual dashboard element */}
-              {feature.visual}
 
               {/* Hover Glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#c8f060]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
