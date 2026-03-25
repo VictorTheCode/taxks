@@ -1,12 +1,9 @@
 @import "tailwindcss";
 @import "./cabinet-grotesk.css";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
-  --background: #fafafa;
-  --foreground: #050505;
-  --bg: #ffffff;
+  --background: #0d0e15;
+  --foreground: #ffffff;
   --accent: #c8f060;
   --accent-dim: rgba(200, 240, 96, 0.1);
   --accent2: #ff6b35;
@@ -14,14 +11,12 @@
   --font-grotesk-black: "CabinetGrotesk-Black", var(--mono);
 }
 
-.dark {
-  --background: #0d0e15;
-  --foreground: #ffffff;
+/* .dark {
   --bg: #0c0c0c;
   --accent: #c8f060;
   --accent-dim: rgba(200, 240, 96, 0.1);
   --accent2: #ff6b35;
-}
+} */
 
 @theme inline {
   --color-background: var(--background);

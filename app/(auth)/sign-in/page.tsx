@@ -1,7 +1,7 @@
 "use client";
 
 import { Eye, EyeClosed } from "lucide-react";
-
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -18,26 +18,26 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await axios.post("/api/auth/login", { email, password });
+      if (res.data.success) {
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      // Handle errors properly this time
+      let message = "An unexpected error occured";
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "Login failed");
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status;
+        message =
+          error.response?.data?.message ||
+          (status === 401 ? "Incorrect email or password." : "Server error.");
+      } else if (error.request instanceof Error) {
+        message = "Network error. Please check your connection.";
+      } else if (error instanceof Error) {
+        message = error.message;
       }
 
-      // Success - redirect to dashboard
-      router.push("/dashboard");
-    } catch (error) {
-      // Handle error properly without console.log
-      const errorMessage =
-        error instanceof Error ? error.message : "An error occurred";
-      setError(errorMessage);
+      setError(message);
     } finally {
       setLoading(false);
     }

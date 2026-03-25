@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { Eye, EyeClosed } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -21,21 +22,15 @@ const SignUp = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
+      const res = await axios.post("/api/auth/register", {
+        name,
+        email,
+        password,
       });
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "Registration failed");
+      if (res.data.success) {
+        router.push("/sign-in");
       }
-
-      // Success - redirect to sign-in
-      router.push("/sign-in");
     } catch (error) {
       // Handle error properly without console.log
       const errorMessage =

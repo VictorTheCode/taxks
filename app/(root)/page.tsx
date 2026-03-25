@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Navbar from "@/components/landing/navbar";
 import Testimonials from "@/components/landing/testimonials";
 import { motion } from "framer-motion";
-import { Brain, BrainCircuit, Sparkle, Sparkles } from "lucide-react";
+import { Brain, Sparkles } from "lucide-react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
