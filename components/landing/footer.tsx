@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="py-20 px-6 border-t border-white/[0.02] bg-[#0d0e15]">
+    <footer className="py-20 px-6 border-t border-white/2 bg-[#0d0e15]">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
         <div className="space-y-4">
           <div className="flex items-center gap-2">
@@ -16,7 +16,7 @@ const Footer = () => {
             </span>
           </div>
           <p className="text-xs text-white/30 max-w-[200px] leading-relaxed font-mono">
-            High-fidelity task architecture for modern engineers.
+            AI-powered Task manager built for efficiency and productivity.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ const Footer = () => {
               href="/demo"
               className="text-xs text-white/40 hover:text-[#c8f060] transition-colors"
             >
-              Architecture
+              View Demo
             </Link>
             <Link
               href="/docs"
@@ -59,11 +59,11 @@ const Footer = () => {
       </div>
 
       <div className="max-w-5xl mx-auto mt-20 flex justify-between items-center border-t border-white/[0.03] pt-8">
-        <p className="text-[10px] font-mono text-white/10 tracking-widest uppercase">
-          © 2026 TAXKS.ALL_RIGHTS_RESERVED
+        <p className="text-[10px] font-mono text-white/50 tracking-widest uppercase">
+          © 2026 Taxks. All Rights Reserved
         </p>
-        <div className="flex gap-4 text-[10px] font-mono text-white/10">
-          <span>NIGERIA // LGS</span>
+        <div className="flex gap-4 text-[10px] font-mono text-white/50">
+          <span>Built with ❤️ by vinxxin</span>
         </div>
       </div>
     </footer>
