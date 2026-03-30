@@ -12,10 +12,16 @@ import { useGSAP } from "@gsap/react";
 import Footer from "@/components/landing/footer";
 import BentoGrid from "@/components/landing/bento";
 import Image from "next/image";
+import useUser from "@/hooks/use-user";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HomePage = () => {
+  const { user, loading } = useUser();
+
+  const router = useRouter();
+
   const containerRef = useRef(null);
   const revealRef = useRef(null);
 

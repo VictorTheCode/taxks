@@ -9,7 +9,13 @@ export type {
   ProjectWithTasks,
   TaskWithProject,
 } from "./tasks";
-export type { DemoTask, Priority, Status, TaskItemProps } from "./demo";
+export type {
+  DemoTask,
+  Priority,
+  Status,
+  TaskItemProps,
+  HeaderProps,
+} from "./demo";
 export type {
   SessionUser,
   User,

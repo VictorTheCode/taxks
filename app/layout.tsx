@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const grotesk = localFont({
-  src: "../public/fonts/CabinetGrotesk-Regular.woff2", // this is  not working on the client
-  weight: "400",
+  src: "../public/fonts/CabinetGrotesk-Variable.woff2",
   display: "swap",
   style: "normal",
   variable: "--font-grotesk",
@@ -23,9 +23,19 @@ export default function Layout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${grotesk.className} bg-background text-foreground`}
+        className={`${grotesk.variable} ${grotesk.className} font-sans bg-background text-foreground`}
         suppressHydrationWarning
       >
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#121212",
+              color: "#fff",
+              border: "1px solid rgba(255,255,255,0.1)",
+            },
+          }}
+        />
         {children}
       </body>
     </html>

@@ -15,3 +15,7 @@ export interface TaskItemProps {
   task: DemoTask;
   onToggle: (id: number) => void;
 }
+
+export interface HeaderProps {
+  onToggleSidebar: () => void;
+}

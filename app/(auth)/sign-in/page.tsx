@@ -29,10 +29,13 @@ const SignIn = () => {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
         message =
-          error.response?.data?.message ||
+          error.response?.data?.error ||
           (status === 401 ? "Incorrect email or password." : "Server error.");
-      } else if (error.request instanceof Error) {
-        message = "Network error. Please check your connection.";
+
+        // If there's a network error, display this if request was made but no response
+        if (!error.response) {
+          message = "Network error! Please check your connection.";
+        }
       } else if (error instanceof Error) {
         message = error.message;
       }
